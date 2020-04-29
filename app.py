@@ -6,12 +6,13 @@ app = Flask(__name__)
 
 @app.route("/", methods=["POST", "GET"])
 def index():
+    raw_string = None
     if request.method == "POST":
         raw_string = request.form["subjects"]
-        graph(raw_string)
+    raw_string = "math, bus" if raw_string == None else raw_string
+    graph(raw_string)
     return render_template("index.html", subject_list=raw_string)
 
-@app.route("/graph")
 def graph(raw_string):
     # raw_string has the following format
     # Mathematics, phys, Macm, CMPT
