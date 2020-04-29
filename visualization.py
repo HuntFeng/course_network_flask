@@ -1,5 +1,6 @@
 from pyvis.network import Network
 import pandas as pd
+from jinja2 import Template
 
 def make_edge_list(df: pd.DataFrame) -> list:
     from_len = df["prereq"].apply(lambda x: len(x))
@@ -61,8 +62,51 @@ def make_graph(subjects: list):
         node["font"]["size"] = node["value"]*5
         if node["value"] >= 8:
             node["color"] = "red"
-    
-    g.save_graph("templates/graph.html")
+    return g
+
+def make_html_string(g: Network) -> str:
+    use_link_template = False
+    for n in g.nodes:
+        title = n.get("title", None)
+        if title:
+            if "href" in title:
+                """
+                this tells the template to override default hover
+                mechanic, as the tooltip would move with the mouse
+                cursor which made interacting with hover data useless.
+                """
+                use_link_template = True
+                break
+
+    with open(g.path) as html:
+        content = html.read()
+    template = Template(content)
+
+    nodes, edges, height, width, options = g.get_network_data()
+    # check if physics is enabled
+    if isinstance(g.options, dict):
+        if 'physics' in g.options and 'enabled' in g.options['physics']:
+            physics_enabled = g.options['physics']['enabled']
+        else:
+            physics_enabled = True
+    else:
+        physics_enabled = g.options.physics.enabled
+    html_string = template.render(height=height,
+                                width=width,
+                                nodes=nodes,
+                                edges=edges,
+                                options=options,
+                                physics_enabled=physics_enabled,
+                                use_DOT=g.use_DOT,
+                                dot_lang=g.dot_lang,
+                                widget=g.widget,
+                                bgcolor=g.bgcolor,
+                                conf=g.conf,
+                                tooltip_link=use_link_template)
+    return html_string
+
 
 if __name__ == "__main__":
-    make_graph(["math"])
+    g = make_graph(["math"])
+    html_string = make_html_string(g)
+    print(html_string[:10], "\n......\n", html_string[-10:])

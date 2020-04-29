@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template
-from visualization import make_graph
+from visualization import make_graph, make_html_string
 import pandas as pd
 
 app = Flask(__name__)
@@ -10,8 +10,9 @@ def index():
     if request.method == "POST":
         raw_string = request.form["subjects"]
     raw_string = "math, bus" if raw_string == None else raw_string
-    graph(raw_string)
-    return render_template("index.html", subject_list=raw_string)
+    html_string = graph(raw_string)
+    
+    return render_template("index.html", subject_list=raw_string, graph=html_string)
 
 def graph(raw_string):
     # raw_string has the following format
@@ -31,7 +32,8 @@ def graph(raw_string):
             subject = subjects[subject_name.isin([s])]["label"].item()
             subject_list.append(subject)
     
-    make_graph(subject_list)
+    g = make_graph(subject_list)
+    return make_html_string(g)
 
 if __name__ == "__main__":
     app.run(debug=True)
