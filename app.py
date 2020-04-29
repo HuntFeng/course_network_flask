@@ -8,9 +8,8 @@ app = Flask(__name__)
 def index():
     if request.method == "POST":
         raw_string = request.form["subjects"]
-        return graph(raw_string)
-    else:
-        return render_template("index.html")
+        graph(raw_string)
+    return render_template("index.html", subject_list=raw_string)
 
 @app.route("/graph")
 def graph(raw_string):
@@ -32,7 +31,6 @@ def graph(raw_string):
             subject_list.append(subject)
     
     make_graph(subject_list)
-    return render_template("graph.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

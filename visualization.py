@@ -35,7 +35,7 @@ def make_graph(subjects: list):
     # make graph
     g = Network(
         directed=True, 
-        height="750px", 
+        height="650px", 
         width="100%", 
         bgcolor="#222222", 
         font_color="white"
