@@ -30,8 +30,7 @@ def graph(raw_string):
         elif subject_name.isin([s]).any():
             subject = subjects[subject_name.isin([s])]["label"].item()
             subject_list.append(subject)
-        
-    print(subject_list)
+    
     make_graph(subject_list)
     return render_template("graph.html")
 
