@@ -1,0 +1,1 @@
+[{"label": "PUNJ 100", "name": "Introduction to Punjabi I", "prereq": []}, {"label": "PUNJ 101", "name": "Introduction to Punjabi II", "prereq": ["PUNJ 100"]}]

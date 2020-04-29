@@ -1,0 +1,1 @@
+[{"label": "PERS 118", "name": "Introduction to Persian I", "prereq": []}, {"label": "PERS 168", "name": "Introduction to Persian II", "prereq": ["PERS 118"]}, {"label": "PERS 190", "name": "STT", "prereq": []}]

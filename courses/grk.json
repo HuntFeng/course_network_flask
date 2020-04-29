@@ -1,0 +1,1 @@
+[{"label": "GRK 191", "name": "Modern Greek for Beginners Level I", "prereq": []}, {"label": "GRK 192", "name": "Modern Greek for Beginners Level II", "prereq": []}, {"label": "GRK 291", "name": "Modern Greek Intermediate Level I", "prereq": ["GRK 192"]}, {"label": "GRK 292", "name": "Modern Greek Intermediate Level II", "prereq": []}]

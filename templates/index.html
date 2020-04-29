@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Course Network Visualization - Simon Fraser University</h1>
+<h4>Author: Hunt Feng (huntf@sfu.ca) </h4>
+
+<p>This project is to visualize the undergraduate course network of SFU(Simon Fraser University). The network is a directed graph, each course serves as a vertex, and is connected by directed edges from its prerequisites.</p>  
+<p>In this way, students can easily understand the importance of some courses. For example, in Mathematics, the most important courses (in my opion) are calculus (MATH 150, MATH 151, MATH 152, ...) and linear algebra (MATH 232 and MATH 240) since they are the foundation of all math courses later on. By visualizing the network of math courses, we will see that these courses have the most connections in the network. </p>
+<p>Further more, course network of multiple subjects can also be visualized, so that students can intuitively see the connection between two subjects. For example, when visualize the course network of Math and Business, we will see that BUS 336 (Data and Decisions II) serves as a joint of two networks, math and business. Indeed, the course name is already self explanatory. </p>
+
+
+<h2> How to use ?</h2>
+
+<p>Simply enter the subject name into the text field. For example: </p>
+<ul>
+  <li>Mathematics</li>
+  <li>PHYSICS</li>
+  <li>Macm</li>
+  <li>bus</li>
+</ul>
+<p>For multiple subjects, they have to be separated by comma.</p>
+<ul>
+  <li>Mathematics, PHYSICS, Macm, bus</li>
+</ul>
+
+<form action="#" method="POST">
+  <label for="subjects">Subjects:</label><br>
+  <input type="text" id="subjects" name="subjects"><br>
+  <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
